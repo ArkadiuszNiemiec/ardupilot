@@ -19,6 +19,7 @@
 #include "RPM_EFI.h"
 #include "RPM_HarmonicNotch.h"
 #include "RPM_ESC_Telem.h"
+#include "RPM_AS5600.h"
 
 #include <AP_Logger/AP_Logger.h>
 
@@ -74,6 +75,9 @@ void AP_RPM::init(void)
 #endif
         case RPM_TYPE_ESC_TELEM:
             drivers[i] = new AP_RPM_ESC_Telem(*this, i, state[i]);
+            break;
+        case RPM_TYPE_AS5600:
+            drivers[i] = new AP_RPM_AS5600(*this, i, state[i]);
             break;
 #if HAL_EFI_ENABLED
         case RPM_TYPE_EFI:
